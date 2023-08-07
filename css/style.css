@@ -82,17 +82,25 @@ html {
     width: 100%;
 }
 
-.adicionar input {
+.adicionar input, form a {
     width: 100%;
     box-sizing: border-box;
     margin: 0.5em 0 1em;
     padding: 1em 0.5em;
     border-radius: 10px;
     border: 2px solid #40112D;
+    font-size: 13px;
+   
 }
 
 .adicionar label {
     display: block;
+}
+
+form a {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .cadastrar {

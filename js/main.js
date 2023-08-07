@@ -1,46 +1,14 @@
+import item from "./item.js";
+import memoria from "./memoria.js";
 
 const form = document.getElementById("novoItem");
 const lista = document.getElementById("lista-1");
+const botaoLimpar = document.getElementById("botaoLimpar");
+
+const novaMemoria = new memoria();
 
 const listaDeItems = [];
 
-if (localStorage.mochila){
-    listaDeItems.push(JSON.parse(localStorage.mochila));
-    console.log(listaDeItems);
-    exibirLista();
-}else{
-    localStorage.setItem("mochila", "");
-}
-
-function exibirLista (){
-    
-    listaDeItems.forEach(element => {
-        lista.appendChild(element);
-    });
-}
-
-form.addEventListener('submit', (event) => {
-
-    event.preventDefault();
-    
-    const nomeDoItem = event.target.elements["nome"];
-    const quantidade = event.target.elements["quantidade"];
-
-    criaElemento(nomeDoItem.value, quantidade.value)
-
-    nomeDoItem.value = "";
-    quantidade.value = "";
-
-    
-
-})
-
-function apagarLista (){
-
-    listaDeItems.splice(0, listaDeItems.length);
-    localStorage.removeItem("mochila");
-
-}
 
 function criaElemento (nome, quantidade){
 
@@ -54,11 +22,58 @@ function criaElemento (nome, quantidade){
     novoItem.appendChild(numeroItem);
     novoItem.innerHTML += nome;
 
+    return novoItem;
+}
+
+function exibirLista (array){
+
+    console.log(array)
+    lista.textContent = "";
+    
+    array.forEach(element => {
+
+        console.log(element.nome);
+
+        const elementoHTML = criaElemento(element.nome, element.quantidade);
+        lista.appendChild(elementoHTML);
+
+    });
+}
+
+if(novaMemoria.ler()){
+
+    console.log("tinha algo", novaMemoria.ler());
+    listaDeItems.push(...novaMemoria.ler())
+    exibirLista(listaDeItems);
+
+};
+
+form.addEventListener('submit', (event) => {
+
+    event.preventDefault();
+    
+    const nomeDoItem = event.target.elements["nome"];
+    const quantidade = event.target.elements["quantidade"];
+
+    const novoItem = new item(nomeDoItem.value, quantidade.value);
+
     listaDeItems.push(novoItem);
 
-    localStorage.setItem("mochila", JSON.stringify(listaDeItems));
+    exibirLista(listaDeItems);
 
-    exibirLista();
-}
+    novaMemoria.salvar(listaDeItems);
+
+    nomeDoItem.value = "";
+    quantidade.value = "";
+
+})
+
+botaoLimpar.addEventListener('click', () =>{
+
+    listaDeItems.splice(0, listaDeItems.length);
+    localStorage.removeItem("mochila");
+    console.log("limpo")
+
+})
 
 
