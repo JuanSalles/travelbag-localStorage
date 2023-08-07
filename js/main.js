@@ -6,6 +6,7 @@ const listaDeItems = [];
 
 if (localStorage.mochila){
     listaDeItems.push(JSON.parse(localStorage.mochila));
+    console.log(listaDeItems);
     exibirLista();
 }else{
     localStorage.setItem("mochila", "");
@@ -33,6 +34,13 @@ form.addEventListener('submit', (event) => {
     
 
 })
+
+function apagarLista (){
+
+    listaDeItems.splice(0, listaDeItems.length);
+    localStorage.removeItem("mochila");
+
+}
 
 function criaElemento (nome, quantidade){
 
