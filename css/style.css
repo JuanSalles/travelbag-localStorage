@@ -147,6 +147,10 @@ form a {
     font-weight: 400;
 }
 
+.item:hover{
+    background-color: #e0e0e1;
+}
+
 .excluir-item{
     background: none;
     border: none;
@@ -156,5 +160,11 @@ form a {
 
 .excluir-item:hover{
     font-size: 28px;
+}
+
+.observacao{
+    padding: 0 3em 0;
+    color: rgba(255, 255, 255, 0.464);
+
 }
 
