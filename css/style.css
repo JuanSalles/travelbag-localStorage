@@ -125,8 +125,15 @@ form a {
     box-sizing: border-box;
     display: inline-flex;
     align-items: center;
+    justify-content: space-between;
     gap: 1em;
     font-size: 20px;
+}
+
+.container-lista{
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .item strong {
@@ -138,5 +145,16 @@ form a {
     height: 40px;
     Background: #C5965F;
     font-weight: 400;
+}
+
+.excluir-item{
+    background: none;
+    border: none;
+    font-size: 25px;
+    color: black;
+}
+
+.excluir-item:hover{
+    font-size: 28px;
 }
 

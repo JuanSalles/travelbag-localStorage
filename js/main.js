@@ -1,5 +1,6 @@
 import item from "./item.js";
 import memoria from "./memoria.js";
+import criaElemento from "./criaElemento.js";
 
 const form = document.getElementById("novoItem");
 const lista = document.getElementById("lista-1");
@@ -10,39 +11,21 @@ const novaMemoria = new memoria();
 const listaDeItems = [];
 
 
-function criaElemento (nome, quantidade){
+function exibirLista(array) {
 
-    const numeroItem = document.createElement('strong');
-    const novoItem = document.createElement('li');
-
-    novoItem.classList.add("item");
-
-    numeroItem.textContent = quantidade;
-
-    novoItem.appendChild(numeroItem);
-    novoItem.innerHTML += nome;
-
-    return novoItem;
-}
-
-function exibirLista (array){
-
-    console.log(array)
     lista.textContent = "";
-    
-    array.forEach(element => {
 
-        console.log(element.nome);
+    array.forEach((element, index) => {
 
-        const elementoHTML = criaElemento(element.nome, element.quantidade);
+        const elementoHTML = criaElemento(element.nome, element.quantidade, index);
         lista.appendChild(elementoHTML);
 
     });
 }
 
-if(novaMemoria.ler()){
 
-    console.log("tinha algo", novaMemoria.ler());
+if (novaMemoria.ler()) {
+
     listaDeItems.push(...novaMemoria.ler())
     exibirLista(listaDeItems);
 
@@ -51,7 +34,7 @@ if(novaMemoria.ler()){
 form.addEventListener('submit', (event) => {
 
     event.preventDefault();
-    
+
     const nomeDoItem = event.target.elements["nome"];
     const quantidade = event.target.elements["quantidade"];
 
@@ -68,11 +51,22 @@ form.addEventListener('submit', (event) => {
 
 })
 
-botaoLimpar.addEventListener('click', () =>{
+botaoLimpar.addEventListener('click', () => {
 
     listaDeItems.splice(0, listaDeItems.length);
     localStorage.removeItem("mochila");
-    console.log("limpo")
+    
+
+})
+
+lista.addEventListener('click', (event) => {
+    
+    if (event.target.dataset.item) {
+        const itemExcluido = event.target.dataset.item;
+        listaDeItems.splice(itemExcluido, 1);
+        exibirLista(listaDeItems);
+        novaMemoria.salvar(listaDeItems);
+    }
 
 })
 

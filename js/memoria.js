@@ -16,6 +16,6 @@ export default class memoria{
             localStorage.setItem("mochila", "");
             return false
         }
-
     }
+
 }
