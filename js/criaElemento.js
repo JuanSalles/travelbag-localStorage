@@ -11,7 +11,7 @@ export default function criaElemento (nome, quantidade, index){
 
     novoItem.classList.add("item");
     botao.setAttribute("type", "button");
-    botao.setAttribute("data-deleteItem", index);
+    botao.setAttribute("data-delete-item", index);
     novoItem.setAttribute("data-Item", index);
     botao.classList.add("excluir-item");
 

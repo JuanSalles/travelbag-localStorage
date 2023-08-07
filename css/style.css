@@ -4,11 +4,24 @@ html {
     font-family: 'Roboto', cursive;
 }
 
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .conteudo {
     padding: 10vh 3em 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 2em;
+    max-width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2em;
+    grid-row-gap:6px;
+}
+
+.container{
+    min-width: 600px;
 }
 
 .principal {
@@ -112,7 +125,7 @@ form a {
 .lista {
     margin: 0;
     padding: 0;
-    width: 50%;
+    width: 100%;
 }
 
 .item {
@@ -123,7 +136,7 @@ form a {
     margin: 0 0 1em;
     width: 100%;
     box-sizing: border-box;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1em;
@@ -163,7 +176,7 @@ form a {
 }
 
 .observacao{
-    padding: 0 3em 0;
+    padding: 0 1em 0;
     color: rgba(255, 255, 255, 0.464);
 
 }
